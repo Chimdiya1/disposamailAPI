@@ -1,0 +1,26 @@
+// import { createConnection, Connection } from "typeorm";
+// import config from "config";
+// import path from "path";
+
+// const entityPath = path.resolve(__dirname, "..", "entities");
+
+// export default () =>
+//   createConnection({
+//     name: "q-wallet",
+//     type: "postgres",
+//     url: config.get < string > "dbUri",
+//     // host: config.get<string>('dbHost'),
+//     // port: 5432,
+//     // username: config.get<string>('dbUsername'),
+//     // password: config.get<string>('dbPassword'),
+//     // database: config.get<string>('dbName'),
+//     // entities: [`${entityPath}/*.{js,ts}`],
+//     synchronize: config.get < boolean > "dbSync",
+//   })
+//     .then((connection) => {
+//       console.log("Sucessfully connected to db");
+//     })
+//     .catch((err) => {
+//       console.log("Could not connect to db", err);
+//       process.exit(1);
+//     });
