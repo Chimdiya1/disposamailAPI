@@ -2,7 +2,7 @@ function randomNameGen() {
   let num = Math.floor(Math.random() * 4) + 5;
   let res = "";
   for (let i = 0; i < num; i++) {
-    const random = Math.floor(Math.random() * 27);
+    const random = Math.floor(Math.random() * 26);
     res += String.fromCharCode(97 + random);
   }
   return res;
