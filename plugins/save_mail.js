@@ -147,6 +147,8 @@ exports.queue_to_db = function (next, connection) {
         });
       },
       function (email, waterfall_callback) {
+        plugin.loginfo(">>>>>>>",email);
+        // console.log(">>>>>>>",email);
         // Get proper body
         EmailBodyUtility.getHtmlAndTextBody(
           email,

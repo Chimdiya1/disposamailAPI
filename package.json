@@ -7,6 +7,7 @@
   },
   "dependencies": {
     "async": "^3.2.4",
+    "chardet": "^1.5.1",
     "config": "^3.3.9",
     "cookie-parser": "~1.4.4",
     "cors": "^2.8.5",
