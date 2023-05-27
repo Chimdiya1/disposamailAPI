@@ -5,7 +5,7 @@
   "scripts": {
     "start:dev": "nodemon ./src/server.js",
     "start:dev2": "haraka -c ./ & nodemon ./src/server.js",
-    "start": "haraka -c ./ && nodemon ./src/server.js"
+    "start": "haraka -c ./ & node ./src/server.js"
   },
   "dependencies": {
     "async": "^3.2.4",
