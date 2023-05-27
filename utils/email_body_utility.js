@@ -5,7 +5,7 @@ const EmailBodyUtility = function() {
 	const async = require('async');
 	const linkify = require('linkify-it')();
 	const Splitter = require('mailsplit').Splitter;
-	const detectCharacterEncoding = require('detect-character-encoding');
+	// const detectCharacterEncoding = require('detect-character-encoding');
 	// import chardet from 'chardet';
 	const chardet = require('chardet');
 
