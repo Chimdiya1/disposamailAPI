@@ -1,4 +1,4 @@
-const Iconv = require("iconv").Iconv;
+// const Iconv = require("iconv").Iconv;
 const simpleParser = require("mailparser").simpleParser;
 const async = require("async");
 const mime = require("mime");
@@ -343,7 +343,8 @@ exports.queue_to_db = function (next, connection) {
 
 function _mp(plugin, connection, cb) {
   // Options
-  var _options = { Iconv, skipImageLinks: true };
+  var _options = {  skipImageLinks: true };
+  // var _options = { Iconv, skipImageLinks: true };
   //   if (
   //     plugin.cfg.message &&
   //     plugin.cfg.message.limit &&
