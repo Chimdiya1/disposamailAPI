@@ -1,13 +1,21 @@
 const Pool = require("pg").Pool;
 
-const databaseConfig = {
+const devConfig = {
   user: process.env.DB_USER_DEV,
   host: process.env.DB_HOST_DEV,
   database: process.env.DB_DATABASE_DEV,
   password: process.env.DB_PASSWORD_DEV,
   port: process.env.DB_PORT,
 };
+const productionConfig = {
+  user: process.env.DB_USER,
+  host: process.env.DB_HOST,
+  database: process.env.DB_DATABASE,
+  password: process.env.DB_PASSWORD,
+  port: process.env.DB_PORT,
+};
+let config = process.env.NODE_ENV === "production" ? productionConfig : devConfig;
 
-const pool = new Pool(databaseConfig);
+const pool = new Pool(config);
 
 module.exports = pool;

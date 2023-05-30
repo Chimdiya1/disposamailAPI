@@ -1,14 +1,14 @@
 const dotenv = require("dotenv");
 
-dotenv.config()
+dotenv.config();
 
-module.export ={
-    // port: process.env.PORT,
-    // dbUri: process.env.DATABASE_URL,
-    // dbName: 'q-wallet',
-    // jwtSecret: process.env.JWT_SECRET,
-    // flw_secret: process.env.FLW_SECRET,
-    // pstk_secret: process.env.PAYSTACK_SECRET,
-    // flw_encryption_key: process.env.FLW_ENCRYPTION_KEY,
-    // dbSync: false,
-}
+module.export = {
+  user: process.env.DB_USER,
+  host: process.env.DB_HOST,
+  database: process.env.DB_DATABASE,
+  password: process.env.DB_PASSWORD,
+  port: 8080,
+  max: 20,
+  idleTimeoutMillis: 30000,
+  dbPort: process.env.DB_PORT,
+};

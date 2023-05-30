@@ -2,7 +2,7 @@ const randomNameGen = require("../../utils/randomNameGen");
 
 async function createAddress(res, pool) {
   let addressName = randomNameGen();
-  let newEmailAddress = addressName + "@" + process.env.DOMAIN;
+  let newEmailAddress = addressName + "@" + process.env.DOMAIN_DEV;
   // Check if the value exists in the database
   const query = "SELECT COUNT(*) FROM valid_emails WHERE email = $1";
   const result = await pool.query(query, [newEmailAddress]);

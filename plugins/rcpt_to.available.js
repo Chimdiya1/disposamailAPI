@@ -13,7 +13,7 @@ exports.register = function () {
     database: config.get("database"),
     password: config.get("password"),
     port: config.get("dbPort"),
-    sqlQuery: config.get("sqlQuery"),
+    sqlQuery: 'SELECT EXISTS(SELECT 1 FROM valid_emails WHERE email=$1) AS "exists"',
   };
 
   //Initialize the connection pool.

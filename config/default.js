@@ -1,17 +1,30 @@
 const dotenv = require("dotenv");
-dotenv.config()
+dotenv.config();
 
-module.exports = {
-    port: 3002,
-    // dbUri: 'postgresql://postgres:wonderful.@localhost:5432/q-wallet',
-    dbHost: 'localhost',
-    // dbName: 'q-wallet',
-    // dbPort: 5342,
-    // dbPassword: process.env.DB_PASSWORD,
-    // dbUsername: 'postgres',
-    // jwtSecret: process.env.JWT_SECRET,
-    // flw_secret: process.env.FLW_SECRET,
-    // pstk_secret: process.env.PAYSTACK_SECRET,
-    // flw_encryption_key: process.env.FLW_ENCRYPTION_KEY,
-    // dbSync: false,
-}
+console.log(process.env.DB_USER);
+
+const devConfig = {
+  user: process.env.DB_USER_DEV,
+  host: process.env.DB_HOST_DEV,
+  database: process.env.DB_DATABASE_DEV,
+  password: process.env.DB_PASSWORD_DEV,
+  port: 8080,
+  max: 20,
+  idleTimeoutMillis: 30000,
+  dbPort: process.env.DB_PORT,
+};
+const productionConfig = {
+  user: process.env.DB_USER,
+  host: process.env.DB_HOST,
+  database: process.env.DB_DATABASE,
+  password: process.env.DB_PASSWORD,
+  port: 8080,
+  max: 20,
+  idleTimeoutMillis: 30000,
+  dbPort: process.env.DB_PORT,
+};
+
+let config =
+  process.env.NODE_ENV === "production" ? productionConfig : devConfig;
+
+module.exports = config;

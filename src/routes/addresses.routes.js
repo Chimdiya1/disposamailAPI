@@ -51,6 +51,7 @@ addressesRouter.post(
             // console.log(result);
           })
           .catch((error) => {
+            console.log(error)
             throw error;
           });
 
@@ -68,6 +69,7 @@ addressesRouter.post(
             res.status(200).json({userId, email:newEmailAddress, expiryDate});
           })
           .catch((error) => {
+            console.log(error)
             res.status(500).json({
               success: false,
               error: "Error inserting mail",
