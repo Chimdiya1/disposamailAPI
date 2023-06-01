@@ -6,7 +6,8 @@
     "start:dev": "NODE_ENV=production nodemon ./src/server.js",
     "emailserver": "NODE_ENV=production haraka -c ./ ",
     "start:dev2": "haraka -c ./ & nodemon ./src/server.js",
-    "start": "NODE_ENV=production sudo haraka -c ./ & node ./src/server.js"
+    "startHaraka": " sudo haraka -c ./ ",
+    "start": "NODE_ENV=production npm run startHaraka & node ./src/server.js"
   },
   "dependencies": {
     "async": "^3.2.4",
