@@ -5,7 +5,7 @@ const EmailBodyUtility = function() {
 	const async = require('async');
 	const linkify = require('linkify-it')();
 	const Splitter = require('mailsplit').Splitter;
-	// const detectCharacterEncoding = require('detect-character-encoding');
+	const detectCharacterEncoding = require('detect-character-encoding');
 	// import chardet from 'chardet';
 	const chardet = require('chardet');
 
@@ -371,7 +371,7 @@ const EmailBodyUtility = function() {
 				var bodytext_encoding = {};
 				if (_body_text) {
 					try {
-						bodytext_encoding = chardet(Buffer.from(_body_text));
+						bodytext_encoding = detectCharacterEncoding(Buffer.from(_body_text));
 						// _log_module && console.log('!'.repeat(100))
 						// _log_module && console.log(bodytext_encoding)
 						// bodytext_encoding = ced(Buffer.from(_body_text));
@@ -390,7 +390,7 @@ const EmailBodyUtility = function() {
 				var body_text_encoded_encoding = {};
 				if (_body_text_encoded) {
 					try {
-						body_text_encoded_encoding = chardet(Buffer.from(_body_text_encoded));
+						body_text_encoded_encoding = detectCharacterEncoding(Buffer.from(_body_text_encoded));
 					} catch(e) {}
 				}
 				// var body_text_encoded_encoding = _body_text_encoded ? detectCharacterEncoding(Buffer.from(_body_text_encoded)) : {};

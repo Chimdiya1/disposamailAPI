@@ -244,7 +244,7 @@ exports.queue_to_db = function (next, connection) {
         attachments: JSON.stringify(email_object.attachments) || [],
         headers: email_object.headers,
         html: email_object.html,
-        text: email_object.text ? email_object.text : null,
+        text: email_object.text ? email_object.text.replace(/\u0000/g, "") : null,
         reply_to: email_object.headers.get("reply-to")
           ? email_object.headers.get("reply-to").value
           : null,
