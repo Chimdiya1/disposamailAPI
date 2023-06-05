@@ -7,7 +7,7 @@
     "emailserver": "NODE_ENV=production haraka -c ./ ",
     "start:dev2": "haraka -c ./ & nodemon ./src/server.js",
     "startHaraka": " sudo haraka -c ./ ",
-    "start": "NODE_ENV=production pm2 start ./src/server.js"
+    "start": "NODE_ENV=production pm2 start ./src/server.js -i 4"
   },
   "dependencies": {
     "async": "^3.2.4",
