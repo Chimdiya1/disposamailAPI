@@ -24,7 +24,8 @@ function _cleanFileName(file_name, generated_file_name) {
 // Attachment code
 function _storeAttachments(connection, plugin, attachments, mail_object, cb) {
   var _attachments = [];
-
+  let receiver = mail_object.to.text
+  // console.log("====>",mail_object.to.text)
   // loop through each attachment and attempt to store it locally
   var is_tnef_attachment = false;
 
@@ -229,10 +230,11 @@ function _storeAttachments(connection, plugin, attachments, mail_object, cb) {
 
         var attachment_directory = path.join(
           attachments_folder_path,
+          receiver,
           attachment_checksum
         );
         plugin.loginfo('attachment_directory ! : ', attachment_directory);
-
+        
         fs.mkdirp(attachment_directory, function (error, result) {
           // if we have an error, and it's not a directory already exists error then record it
           if (error && error.errno != -17) {

@@ -72,11 +72,12 @@ emailsRouter.delete("/:userId", function (req, res, next) {
 // @desc        delete an email
 // @route       GET /api/emails/:cid/:fileName
 
-emailsRouter.get("/:cid/:fileName", function (req, res, next) {
+emailsRouter.get("/:email/:cid/:fileName", function (req, res, next) {
   try {
+    const email = req.params.email
     const cid = req.params.cid
     const fileName = req.params.fileName
-    const filePath = `attachments/${cid}/${fileName}`; 
+    const filePath = `attachments/${email}/${cid}/${fileName}`; 
     res.download(filePath, fileName, (err) => {
       if (err) {
         console.error('Error while downloading file:', err);
