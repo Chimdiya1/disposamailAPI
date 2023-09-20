@@ -40,6 +40,7 @@ exports.initialize_db = function (next, server) {
     database: config.get("database"),
     password: config.get("password"),
     port: config.get("dbPort"),
+    ssl:true
   };
 
   //Initialize the connection pool.
