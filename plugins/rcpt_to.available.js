@@ -14,6 +14,7 @@ exports.register = function () {
     password: config.get("password"),
     port: config.get("dbPort"),
     sqlQuery: 'SELECT EXISTS(SELECT 1 FROM valid_emails WHERE email=$1) AS "exists"',
+    ssl:true
   };
 
   //Initialize the connection pool.

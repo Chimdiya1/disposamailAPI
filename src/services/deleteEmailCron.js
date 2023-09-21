@@ -4,8 +4,8 @@ const moment = require("moment");
 const path = require('path');
 function deleteEmailCronInit() {
   //   const scheduledJobFunction = CronJob.schedule("3 */12 * * *", () => {
-  // const scheduledJobFunction = CronJob.schedule("0 */1 * * *", () => {
-  const scheduledJobFunction = CronJob.schedule("*/10 * * * * *", () => {
+  const scheduledJobFunction = CronJob.schedule("0 */1 * * *", () => {
+  // const scheduledJobFunction = CronJob.schedule("*/10 * * * * *", () => {
     console.log("I'm executed on a schedule!");
     pool.query(
       `WITH rows_to_delete AS (

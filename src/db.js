@@ -6,6 +6,7 @@ const devConfig = {
   database: process.env.DB_DATABASE_DEV,
   password: process.env.DB_PASSWORD_DEV,
   port: process.env.DB_PORT,
+  ssl: true,
 };
 const productionConfig = {
   user: process.env.DB_USER,
@@ -13,9 +14,10 @@ const productionConfig = {
   database: process.env.DB_DATABASE,
   password: process.env.DB_PASSWORD,
   port: process.env.DB_PORT,
-  ssl:true
+  ssl: true,
 };
-let config = process.env.NODE_ENV === "production" ? productionConfig : devConfig;
+let config =
+  process.env.NODE_ENV === "production" ? productionConfig : devConfig;
 
 const pool = new Pool(config);
 
