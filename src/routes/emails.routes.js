@@ -27,9 +27,10 @@ emailsRouter.post("/", function (req, res, next) {
           throw error;
         }
         let allEmails = results.rows;
-        let userEmails = allEmails.filter(
-          (email) => email.receiver.address === req.body.userAddress
-        );
+        let userEmails = allEmails.filter((email) => {
+          let receiver = typeof email.receiver === 'string' ? JSON.parse(email.receiver) : email.receiver;
+          return receiver.address === req.body.userAddress;
+        });
         res.status(200).json(userEmails);
       }
     );
