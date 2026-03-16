@@ -11,7 +11,7 @@ function deleteEmailCronInit() {
       `WITH rows_to_delete AS (
         SELECT *
         FROM valid_emails
-        WHERE expires < current_timestamp
+        WHERE expires_at < current_timestamp
       )
       DELETE FROM valid_emails
       WHERE (id) IN (

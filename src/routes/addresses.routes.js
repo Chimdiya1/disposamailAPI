@@ -38,7 +38,7 @@ addressesRouter.post(
             `WITH rows_to_delete AS (
                 SELECT *
                 FROM valid_emails
-                WHERE userId = $1
+                WHERE user_id = $1
               )
               DELETE FROM valid_emails
               WHERE (id) IN (
@@ -62,7 +62,7 @@ addressesRouter.post(
         console.log(expiryDate)
         // Insert the value into the database
         const insertQuery =
-          "INSERT INTO valid_emails (userid, email, expires) VALUES ($1, $2, $3)";
+          "INSERT INTO valid_emails (user_id, email, expires_at) VALUES ($1, $2, $3)";
         pool
           .query(insertQuery, [userId, newEmailAddress, expiryDate])
           .then(() => {
