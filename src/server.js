@@ -6,6 +6,7 @@ const config = require("config");
 const express = require("express");
 const loader = require("./loaders");
 const deleteEmailCronInit = require('./services/deleteEmailCron');
+const pgListener = require('./pgListener');
 
 const PORT = config.get('port');
 
@@ -14,6 +15,7 @@ async function startServer(){
   await loader.init( app )
 
   deleteEmailCronInit()
+  pgListener.connect();
   app.listen(PORT, () => {
     console.log('server is running at port', PORT);
   });

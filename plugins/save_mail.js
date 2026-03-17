@@ -297,6 +297,14 @@ exports.queue_to_db = function (next, connection) {
               ` Successfully stored the email with the message_id: ${_email.message_id} !!! `
             );
             plugin.lognotice("--------------------------------------");
+
+            // Notify connected SSE clients about the new email
+            var receiverAddr = _email.receiver && _email.receiver.address ? _email.receiver.address : null;
+            if (receiverAddr && results.rows[0]) {
+              var notifyPayload = JSON.stringify({ address: receiverAddr, id: results.rows[0].id });
+              plugin.pool.query("SELECT pg_notify('new_email', $1)", [notifyPayload]);
+            }
+
             return next(OK);
           }
         }

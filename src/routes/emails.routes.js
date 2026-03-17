@@ -1,7 +1,52 @@
 const express = require("express");
 const pool = require("../db");
+const pgListener = require("../pgListener");
 
 const emailsRouter = express.Router();
+
+// @desc        SSE stream for real-time email notifications
+// @route       GET /api/emails/stream?address=user@disposamail.xyz
+
+emailsRouter.get("/stream", function (req, res) {
+  const address = req.query.address;
+  if (!address) {
+    return res.status(400).json({ error: "address query parameter is required" });
+  }
+
+  res.writeHead(200, {
+    "Content-Type": "text/event-stream",
+    "Cache-Control": "no-cache",
+    "Connection": "keep-alive",
+  });
+  res.write(":ok\n\n");
+
+  // Heartbeat to keep connection alive through proxies
+  const heartbeat = setInterval(() => {
+    res.write(":heartbeat\n\n");
+  }, 30000);
+
+  // Listen for new emails matching this address
+  const onNewEmail = (payload) => {
+    if (payload.address === address) {
+      pool.query(
+        "SELECT * FROM received_emails WHERE id = $1",
+        [payload.id],
+        (err, result) => {
+          if (!err && result.rows.length > 0) {
+            res.write(`data: ${JSON.stringify(result.rows[0])}\n\n`);
+          }
+        }
+      );
+    }
+  };
+
+  pgListener.on("new_email", onNewEmail);
+
+  req.on("close", () => {
+    clearInterval(heartbeat);
+    pgListener.removeListener("new_email", onNewEmail);
+  });
+});
 
 // @desc        get all emails
 // @route       GET /api/emails
